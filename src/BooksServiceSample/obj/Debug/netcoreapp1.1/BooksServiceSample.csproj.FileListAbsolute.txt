@@ -1,0 +1,11 @@
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\bin\Debug\netcoreapp1.1\BooksServiceSample.deps.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\bin\Debug\netcoreapp1.1\BooksServiceSample.runtimeconfig.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\bin\Debug\netcoreapp1.1\BooksServiceSample.runtimeconfig.dev.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\bin\Debug\netcoreapp1.1\BooksServiceSample.dll
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\bin\Debug\netcoreapp1.1\BooksServiceSample.pdb
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.csprojResolveAssemblyReference.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.csproj.CoreCompileInputs.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.AssemblyInfoInputs.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.AssemblyInfo.cs
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.dll
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BooksServiceSample\obj\Debug\netcoreapp1.1\BooksServiceSample.pdb

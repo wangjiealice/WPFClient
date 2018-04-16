@@ -1,0 +1,310 @@
+﻿<Window x:Class="WPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFClient"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        mc:Ignorable="d"
+        Title="Labscope Simulator" Height="330" Width="646">
+    <Window.Resources>
+        <!--引用资源-->
+        <local:RLTLConverter x:Key="RLTLConverter"/>
+        <Style TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Helvetica Neue,Helvetica,Arial,sans-serif"/>
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontFamily" Value="Helvetica Neue,Helvetica,Arial,sans-serif"/>
+            <Setter Property="Foreground" Value="#FF333333"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+    </Window.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ViewModel.LoadedCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="MouseRightButtonUp">
+            <i:InvokeCommandAction Command="{Binding ViewModel.RightButtonUpCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+            <RowDefinition/>
+            <RowDefinition Height="2"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Background="{Binding ViewModel.ReflectorTextColor}">
+            <TextBlock HorizontalAlignment="Right" >Reflector Position:</TextBlock>
+            <TextBlock Text="{Binding ViewModel.ReflectorPosition,Mode=TwoWay}"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="3" Background="{Binding ViewModel.Color1}">
+            <TextBlock>Object Position:</TextBlock>
+            <TextBlock Text="{Binding ViewModel.ObjectPosition,Mode=TwoWay}"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Background="{Binding ViewModel.Color2}">
+            <TextBlock Grid.Row="4" HorizontalAlignment="Right">Light Brightness:</TextBlock>
+            <TextBlock Text="{Binding ViewModel.PosServo.Position,Mode=TwoWay}" 
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <Rectangle Width="1000" Fill="Gray" Grid.ColumnSpan="5"/>
+        <Rectangle Grid.Row="2"  Width="1000" Fill="Gray"  Grid.ColumnSpan="5" />
+        <Rectangle Grid.Row="4"  Width="1000" Fill="Gray"  Grid.ColumnSpan="5"/>
+        <Rectangle Grid.Column="0"  Height="1000" Fill="Gray" Grid.RowSpan="5"/>
+        <Rectangle Grid.Column="2"  Height="1000" Fill="Gray" Grid.RowSpan="5"/>
+        <Rectangle Grid.Column="4"  Height="1000" Fill="Gray" Grid.RowSpan="5"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="3" Background="{Binding ViewModel.Color3}">
+            <TextBlock>RLTL Position:</TextBlock>
+            <TextBlock Text="{Binding ViewModel.RLTL,Mode=TwoWay}"
+                       Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <GroupBox Grid.Row="6" Grid.ColumnSpan="5">
+            <GroupBox.Header>
+                <TextBlock>Change light brightness:</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <TextBlock>Brightness(0~1000):</TextBlock>
+                <TextBlock Text="{Binding ViewModel.PosServo.Position}"/>
+                <Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.PosServo.Position}" Width="200" VerticalAlignment="Center" Margin="10,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="PreviewMouseUp">
+                            <i:InvokeCommandAction Command="{Binding ViewModel.UpdatePosServoCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Slider>
+                <!--<Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.PosServo.Position,Delay=300}" Width="200" VerticalAlignment="Center" Margin="10,0">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="ValueChanged">
+                            <i:InvokeCommandAction Command="{Binding ViewModel.UpdatePosServoCommand}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Slider>-->
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="7" Grid.ColumnSpan="5">
+            <GroupBox.Header>
+                <TextBlock>Change RLTL:</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <RadioButton GroupName="RLTLGroup" Style="{DynamicResource radio has-success}"
+                             IsChecked="{Binding ViewModel.RLTL,Mode=TwoWay,
+                    Converter={StaticResource RLTLConverter},ConverterParameter=RL}"
+                             
+                             Command="{Binding ViewModel.RLCheckedCommand}">
+                    <RadioButton.Content>
+                        <TextBlock>RL</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="RLTLGroup" Style="{DynamicResource radio has-success}" Margin="20,0,0,0"
+                             IsChecked="{Binding ViewModel.RLTL,Mode=TwoWay,Converter={StaticResource RLTLConverter},
+                    ConverterParameter=TL}"
+                             Command="{Binding ViewModel.TLCheckedCommand}">
+                    <RadioButton.Content>
+                        <TextBlock>TL</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackPanel>
+        </GroupBox>
+
+
+
+
+    </Grid>
+
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        
+        
+
+        <TextBlock HorizontalAlignment="Right">Reflector Position:</TextBlock>
+        <TextBlock Text="{Binding ViewModel.ReflectorPosition,Mode=TwoWay}"
+                   Grid.Column="2"/>
+        <Rectangle Grid.Row="1" Height="5" Width="1000" Fill="Black"/>
+        <TextBlock Grid.Row="2" HorizontalAlignment="Right">Object Position:</TextBlock>
+        <TextBlock Text="{Binding ViewModel.ObjectPosition,Mode=TwoWay}" 
+                   Grid.Column="2"
+                   Grid.Row="2"/>
+
+        <TextBlock Grid.Row="4" HorizontalAlignment="Right">Light Brightness:</TextBlock>
+        <TextBlock Text="{Binding ViewModel.Brightness,Mode=TwoWay}" 
+                   Grid.Column="2"
+                   Grid.Row="4"/>
+
+        <TextBlock Grid.Row="6" HorizontalAlignment="Right">RLTL Position:</TextBlock>
+        <TextBlock Text="{Binding ViewModel.RLTL,Mode=TwoWay}" 
+                   Grid.Column="2"
+                   Grid.Row="6"/>
+
+        <GroupBox Grid.Row="7" Grid.ColumnSpan="3">
+            <GroupBox.Header>
+                <TextBlock>Change light brightness:</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <TextBlock>Brightness(0~1000):</TextBlock>
+                <TextBlock Text="{Binding ViewModel.PosServo.Position}"/>
+                <Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.PosServo.Position}" Width="200" VerticalAlignment="Center" Margin="10,0"/>
+                <Button Command="{Binding ViewModel.UpdatePosServoCommand}" Width="200">UpdatePosServo</Button>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Grid.Row="9" Grid.ColumnSpan="3">
+            <GroupBox.Header>
+                <TextBlock>Change RLTL:</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Orientation="Horizontal" Margin="20">
+                <RadioButton GroupName="RLTLGroup" Style="{DynamicResource radio has-success}"
+                             IsChecked="{Binding ViewModel.PosChanger.Position,Converter={StaticResource RLTLConverter},ConverterParameter=RL}"
+                             Command="{Binding ViewModel.RLCheckedCommand}">
+                    <RadioButton.Content>
+                        <TextBlock>RL</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton GroupName="RLTLGroup" Style="{DynamicResource radio has-success}" Margin="20,0,0,0"
+                             IsChecked="{Binding ViewModel.PosChanger.Position,Converter={StaticResource RLTLConverter},ConverterParameter=TL}"
+                             Command="{Binding ViewModel.TLCheckedCommand}">
+                    <RadioButton.Content>
+                        <TextBlock>TL</TextBlock>
+                    </RadioButton.Content>
+                </RadioButton>
+            </StackPanel>
+        </GroupBox>
+        
+        
+
+    </Grid>-->
+
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding ViewModel.GetDataCommand}"
+                    >Get Data</Button>
+            <Button Command="{Binding ViewModel.AddDataCommand}" 
+                    Margin="20,0,0,0">Add Data</Button>
+            <Button Command="{Binding ViewModel.UpdateDataCommand}" 
+                     Margin="20,0,0,0">Update Data</Button>
+            <Button Command="{Binding ViewModel.DeleteSetDataCommand}"
+                     Margin="20,0,0,0">Delete Data</Button>
+            <Button Command="{Binding ViewModel.CallBackCommand}" 
+                    Margin="20,0,0,0">Start waiting CallBack</Button>
+            <Button Command="{Binding ViewModel.TestCommand}">Test Command</Button>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Text="{Binding ViewModel.DisplayContent}" 
+                  VerticalScrollBarVisibility="Auto" 
+                 TextChanged="TextBox_TextChanged"
+                 Height="Auto"/>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Name"  Margin="12" />
+                <TextBox Text="{Binding ViewModel.Name, Mode=TwoWay}"  
+                         Grid.Column="1" Margin="12" VerticalContentAlignment="Center" />
+                <Button Content="Connect" Command="{Binding ViewModel.ConnectCommand}" 
+                        Grid.Column="2" Margin="12" Padding="8"  />
+                <TextBlock Text="Message" Grid.Row="1" Grid.Column="0"  Margin="12"/>
+                <TextBox Text="{Binding ViewModel.Message, Mode=TwoWay}"
+                         Grid.Row="1" Grid.Column="1"  Margin="12" VerticalContentAlignment="Center" />
+                <Button Content="Send" Command="{Binding ViewModel.SendCommand, Mode=OneTime}" 
+                        Grid.Row="1" Grid.Column="2" Margin="12" Padding="8" />
+                <ListBox ItemsSource="{Binding ViewModel.Messages, Mode=OneWay}" 
+                         Grid.Row="2"  Grid.Column="0" Grid.ColumnSpan="2" Margin="12" />
+            </Grid>
+        </Grid>
+
+    </Grid>-->
+
+
+
+    <!--with style-->
+    <!--<Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Command="{Binding GetDataCommand}"
+                    Style="{DynamicResource btn-success}">Get Data</Button>
+            <Button Command="{Binding AddDataCommand}" Style="{DynamicResource btn-info}"
+                    Margin="20,0,0,0">Add Data</Button>
+            <Button Command="{Binding UpdateDataCommand}" 
+                    Style="{DynamicResource btn-warning}" Margin="20,0,0,0">Update Data</Button>
+            <Button Command="{Binding DeleteSetDataCommand}"
+                    Style="{DynamicResource btn-danger}" Margin="20,0,0,0">Delete Data</Button>
+            <Button Command="{Binding CallBackCommand}" 
+                    Style="{DynamicResource btn-success}" Margin="20,0,0,0">Start waiting CallBack</Button>
+            <Button Command="{Binding TestCommand}">Test Command</Button>
+        </StackPanel>
+
+        <TextBox Text="{Binding DisplayContent}" 
+                 Grid.Row="2" VerticalScrollBarVisibility="Auto" 
+                 TextChanged="TextBox_TextChanged"
+                 Height="Auto"/>
+
+    </Grid>-->
+</Window>

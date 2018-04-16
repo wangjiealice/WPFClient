@@ -1,0 +1,11 @@
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\bin\Debug\netcoreapp1.1\BookServiceClientApp.deps.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\bin\Debug\netcoreapp1.1\BookServiceClientApp.runtimeconfig.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\bin\Debug\netcoreapp1.1\BookServiceClientApp.runtimeconfig.dev.json
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\bin\Debug\netcoreapp1.1\BookServiceClientApp.dll
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\bin\Debug\netcoreapp1.1\BookServiceClientApp.pdb
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.csprojResolveAssemblyReference.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.csproj.CoreCompileInputs.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.AssemblyInfoInputs.cache
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.AssemblyInfo.cs
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.dll
+C:\Users\zcalwang\Downloads\Book\c#高级编程（第10版）源码\ProfessionalCSharp6-master\WebAPI\BooksServiceSample\src\BookServiceClientApp\obj\Debug\netcoreapp1.1\BookServiceClientApp.pdb
