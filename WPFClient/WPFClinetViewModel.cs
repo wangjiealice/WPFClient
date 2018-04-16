@@ -16,6 +16,9 @@ using System.Net;
 using Microsoft.AspNetCore.Sockets.Client;
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using System.Diagnostics;
+using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace WPFClient
 {
@@ -722,6 +725,9 @@ namespace WPFClient
         }
         private async void OnLoadRaised()
         {
+            GetCurrentIP();
+            InitialzeServerIP();
+
             Client = new HttpClient();
             Client.BaseAddress = new Uri(Addresses.BaseAddress);
 
@@ -757,6 +763,22 @@ namespace WPFClient
 
         }
 
+        private string GetCurrentIP()
+        {
+            string name = Dns.GetHostName();
+            IPAddress[] ipadrlist = Dns.GetHostAddresses(name);
+            string ip = ipadrlist.Where(item => item.AddressFamily 
+            == System.Net.Sockets.AddressFamily.InterNetwork).FirstOrDefault().ToString();
+
+            return ip;
+        }
+
+        private void InitialzeServerIP()
+        {
+            string currentDirectory = System.Environment.CurrentDirectory;
+            string xmlPath = currentDirectory + @"\Configure\Configure.xml";
+            Addresses.BaseAddress = XmlHelper.ReadXmlReturnNode(xmlPath, "ServerIP");
+        }
         private void OnCan29MessageReceived(string changedParam, int value)
         {
             Console.WriteLine("Parameter:" + changedParam + "   Value is: " + value);

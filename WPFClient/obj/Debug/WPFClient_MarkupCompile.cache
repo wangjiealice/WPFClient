@@ -4,16 +4,16 @@
 exe
 C#
 .cs
-C:\1code\1Main\BooksServiceSample180325\WPFClient\obj\Debug\
+C:\GitExt\WPFClient\WPFClient\obj\Debug\
 WPFClient
 none
 false
 DEBUG;TRACE
-C:\1code\1Main\BooksServiceSample180325\WPFClient\App.xaml
+C:\GitExt\WPFClient\WPFClient\App.xaml
 7-1405933507
 
-131827134489
-154798062076
+142070527799
+154151282891
 MainWindow.xaml;Style\BaseStyle.xaml;Style\Bootstrap.xaml;Style\Button.xaml;Style\Colors.xaml;Style\Fonts.xaml;Style\Sizes.xaml;
 
 False

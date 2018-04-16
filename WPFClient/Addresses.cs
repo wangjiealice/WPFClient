@@ -1,15 +1,15 @@
 ﻿namespace WPFClient
 {
-    public class Addresses
+    public static class Addresses
     {
         //7212
-        public const string BaseAddress = "http://192.168.0.113:5000/";
-        public const string BooksApi = "api/BookChapters/";
-        public const string SignalRAddress = BaseAddress + "chatHub";
+        public static string BaseAddress = "http://192.168.0.113:5000/";
+        public static string BooksApi = "api/BookChapters/";
+        public static string SignalRAddress = BaseAddress + "chatHub";
 
-        public const string Can29HubAddress = BaseAddress + "can29Hub";
+        public static string Can29HubAddress = BaseAddress + "can29Hub";
 
-        public const string Can29Address = BaseAddress + "api/Can29/";
+        public static string Can29Address = BaseAddress + "api/Can29/";
 
 
     }
