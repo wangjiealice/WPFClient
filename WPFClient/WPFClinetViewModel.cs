@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Diagnostics;
 using System.Threading;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace WPFClient
 {
@@ -725,6 +726,7 @@ namespace WPFClient
         }
         private async void OnLoadRaised()
         {
+
             GetCurrentIP();
             InitialzeServerIP();
 
@@ -762,6 +764,7 @@ namespace WPFClient
             GetRLTLRaised();
 
         }
+
 
         private string GetCurrentIP()
         {
