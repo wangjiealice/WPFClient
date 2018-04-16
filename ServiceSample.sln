@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{00B75FDC-B961-4332-A91C-E27D004EA515}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{515B7233-7440-4088-9309-9978C529A9B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "WPFClient\WPFClient.csproj", "{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EBF396EE-7C54-4AA1-B270-32A4C9C3E81C} = {00B75FDC-B961-4332-A91C-E27D004EA515}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {35963EC0-0871-4AE4-84A9-286AC59326A6}
+	EndGlobalSection
+EndGlobal

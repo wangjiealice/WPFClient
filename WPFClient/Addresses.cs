@@ -3,7 +3,7 @@
     public class Addresses
     {
         //7212
-        public const string BaseAddress = "http://192.168.0.100:5000/";
+        public const string BaseAddress = "http://192.168.0.113:5000/";
         public const string BooksApi = "api/BookChapters/";
         public const string SignalRAddress = BaseAddress + "chatHub";
 
