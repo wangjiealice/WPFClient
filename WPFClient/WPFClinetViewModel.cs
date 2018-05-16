@@ -727,8 +727,8 @@ namespace WPFClient
         private async void OnLoadRaised()
         {
 
-            GetCurrentIP();
-            InitialzeServerIP();
+            //GetCurrentIP();
+            //InitialzeServerIP();
 
             Client = new HttpClient();
             Client.BaseAddress = new Uri(Addresses.BaseAddress);
@@ -781,6 +781,7 @@ namespace WPFClient
             string currentDirectory = System.Environment.CurrentDirectory;
             string xmlPath = currentDirectory + @"\Configure\Configure.xml";
             Addresses.BaseAddress = XmlHelper.ReadXmlReturnNode(xmlPath, "ServerIP");
+            Console.WriteLine("Current address is:{0}", Addresses.BaseAddress);
         }
         private void OnCan29MessageReceived(string changedParam, int value)
         {
