@@ -724,7 +724,7 @@ namespace WPFClient
         {
             Console.WriteLine("success");
         }
-        private async void OnLoadRaised()
+        private  void OnLoadRaised()
         {
 
             //GetCurrentIP();
@@ -742,13 +742,14 @@ namespace WPFClient
                         .Build();
             _can29Connection.Closed += HubConnectionClosed;
 
-            _can29Connection.On<string, int>("BroadcastMessage", OnCan29MessageReceived);
+            //_can29Connection.On<string, int>("BroadcastMessage", OnCan29MessageReceived);
+            _can29Connection.On<int>("TimerAction", Test);
 
             try
             {
                 if (_can29Connection != null)
                 {
-                    await _can29Connection.StartAsync();
+                    _can29Connection.StartAsync();
                 }
             }
             catch (HttpRequestException ex)
@@ -765,7 +766,11 @@ namespace WPFClient
 
         }
 
+        private void Test(int value)
+        {
 
+            Console.WriteLine("Client get value:{0}",value);
+        }
         private string GetCurrentIP()
         {
             string name = Dns.GetHostName();

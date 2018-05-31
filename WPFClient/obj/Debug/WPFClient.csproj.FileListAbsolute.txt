@@ -294,7 +294,6 @@ C:\GitExt\WPFClient\WPFClient\bin\Debug\System.Runtime.CompilerServices.Unsafe.x
 C:\GitExt\WPFClient\WPFClient\bin\Debug\System.Threading.Channels.xml
 C:\GitExt\WPFClient\WPFClient\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\GitExt\WPFClient\WPFClient\bin\Debug\System.Windows.Interactivity.xml
-C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csprojResolveAssemblyReference.cache
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.exe.config
 C:\GitExt\WPFClient\WPFClient\obj\Debug\Style\BaseStyle.baml
 C:\GitExt\WPFClient\WPFClient\obj\Debug\Style\Bootstrap.baml
@@ -316,3 +315,4 @@ C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csproj.CoreCompileInputs.cache
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csproj.CopyComplete
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.exe
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.pdb
+C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csprojResolveAssemblyReference.cache
