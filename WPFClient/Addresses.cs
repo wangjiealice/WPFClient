@@ -10,6 +10,10 @@ namespace WPFClient
         public static string Can29HubAddress;
         public static string Can29Address;
         public static string MTBConnectionHubAddress;
+        public static string MTBAPIHubAddress;
+        public static string MTBConnectionAddress;
+
+
 
         static Addresses()
         {
@@ -17,8 +21,10 @@ namespace WPFClient
             SignalRAddress = BaseAddress + "chatHub";
             Can29HubAddress = BaseAddress + "can29Hub";
             Can29Address = BaseAddress + "api/Can29/";
+            MTBConnectionAddress = BaseAddress + "api/MTBConnection/";
             BooksApi = BaseAddress + "api/BookChapters/";
             MTBConnectionHubAddress = BaseAddress + "connectionHub";
+            MTBAPIHubAddress = BaseAddress + "apiHub";
         }
 
         private static string GetAddressFromLocal()

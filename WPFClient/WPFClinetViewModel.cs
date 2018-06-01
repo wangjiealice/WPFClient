@@ -25,6 +25,7 @@ namespace WPFClient
 {
     public class WPFClinetViewModel : INotifyPropertyChanged
     {
+        #region private object
         HttpClient Client { get; set; }
         IEnumerable<BookChapter> Books { get; set; }
         private readonly IMessagingService _messagingService;
@@ -37,6 +38,10 @@ namespace WPFClient
         private Servo _rltlPositon;
 
 
+        #endregion
+
+
+        #region Property
         public ObservableCollection<string> Messages { get; } = new ObservableCollection<string>();
 
         public WPFClinetViewModel(IMessagingService messagingService)
@@ -192,11 +197,23 @@ namespace WPFClient
 
         public string Name { get; set; }
         public string Message { get; set; }
+
+        #endregion
+
+        #region Command
         public ICommand TestCommand
         {
             get
             {
                 return new DelegateCommand(OnTestRaised);
+            }
+        }
+
+        public ICommand ConnectMTBCommand
+        {
+            get
+            {
+                return new DelegateCommand(OnConnectMTBRaised);
             }
         }
 
@@ -208,45 +225,7 @@ namespace WPFClient
                 return new DelegateCommand(OnRightButtonUpRaised);
             }
         }
-
-        private void OnRightButtonUpRaised()
-        {
-            ReflectorTextColor = "#FFFFFF";
-            Color1 = "#FFFFFF";
-            Color2 = "#FFFFFF";
-            Color3 = "#FFFFFF";
-        }
-
-        private void OnTestRaised()
-        {
-            DisplayBooksInConsole();
-        }
-
-        private void DisplayBooksInConsole()
-        {
-            Console.WriteLine("Now there are {0} books. \n", Books.Count());
-            foreach (var item in Books)
-            {
-                string display = "Title:" + item.Title;
-                display += "\n";
-                display += "Id:" + item.Id;
-                display += "\n";
-                Console.WriteLine(display);
-            }
-        }
-
-        private void DisplayBooksInMainWindow()
-        {
-            DisplayContent += "Now there are {0} books. \n" + Books.Count();
-            foreach (var item in Books)
-            {
-                DisplayContent += "Title:" + item.Title;
-                DisplayContent += "\n";
-                DisplayContent += "Id:" + item.Id;
-                DisplayContent += "\n";
-            }
-        }
-
+        
         public ICommand LoadedCommand
         {
             get
@@ -376,6 +355,108 @@ namespace WPFClient
                 return new DelegateCommand(TLCheckedRaised);
             }
         }
+        #endregion
+
+        #region Function
+        private void OnRightButtonUpRaised()
+        {
+            ReflectorTextColor = "#FFFFFF";
+            Color1 = "#FFFFFF";
+            Color2 = "#FFFFFF";
+            Color3 = "#FFFFFF";
+        }
+
+        private void OnTestRaised()
+        {
+            DisplayBooksInConsole();
+        }
+
+        private  void OnConnectMTBRaised()
+        {
+            #region MTB
+            CloseConnection(_mtbConnection);
+            _mtbConnection = new HubConnectionBuilder()
+                        .WithUrl(new Uri(Addresses.MTBConnectionHubAddress))
+                        .WithConsoleLogger()
+                        .Build();
+            _mtbConnection.Closed += HubConnectionClosed;
+
+            _mtbConnection.On<string, int>("BroadcastMessage", OnCan29MessageReceived);
+            _mtbConnection.On<int>("TimerAction", Test);
+
+            try
+            {
+                if (_mtbConnection != null)
+                {
+                      _mtbConnection.StartAsync();
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                _messagingService.ShowMessage(ex.Message);
+            }
+
+            GetAllAssemmbly();
+
+            Console.WriteLine("Load Client Succeed");
+
+            #endregion
+        }
+
+        private async void GetAllAssemmbly()
+        {
+            object mtbversion = await GetDataFromServer(Addresses.MTBConnectionAddress, "MTBVersion");
+            Console.WriteLine("mtbversion is {0}", mtbversion);
+        }
+
+        private async Task<object> GetDataFromServer(string baseUri, string childUri)
+        {
+            try
+            {
+                string Uri = baseUri;
+
+                HttpResponseMessage response = await Client.GetAsync(Uri + childUri);
+                if (response.IsSuccessStatusCode)
+                {
+                    string test = response.Content.ReadAsStringAsync().Result;
+                    return JasonToTypeConverter<object>(test);
+                }
+
+                return -1;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return -1;
+            }
+        }
+
+
+        private void DisplayBooksInConsole()
+        {
+            Console.WriteLine("Now there are {0} books. \n", Books.Count());
+            foreach (var item in Books)
+            {
+                string display = "Title:" + item.Title;
+                display += "\n";
+                display += "Id:" + item.Id;
+                display += "\n";
+                Console.WriteLine(display);
+            }
+        }
+
+        private void DisplayBooksInMainWindow()
+        {
+            DisplayContent += "Now there are {0} books. \n" + Books.Count();
+            foreach (var item in Books)
+            {
+                DisplayContent += "Title:" + item.Title;
+                DisplayContent += "\n";
+                DisplayContent += "Id:" + item.Id;
+                DisplayContent += "\n";
+            }
+        }
+
 
         private void RLCheckedRaised()
         {
@@ -389,6 +470,8 @@ namespace WPFClient
 
         private HubConnection _hubConnection;
         private HubConnection _can29Connection;
+        private HubConnection _mtbConnection;
+
 
         //private IHubProxy _hubProxy;
 
@@ -733,7 +816,7 @@ namespace WPFClient
             Client = new HttpClient();
             Client.BaseAddress = new Uri(Addresses.BaseAddress);
 
-
+            #region Can29Client TimerAction has no problem with server430, do not modify!!!
 
             CloseConnection(_can29Connection);
             _can29Connection = new HubConnectionBuilder()
@@ -742,8 +825,8 @@ namespace WPFClient
                         .Build();
             _can29Connection.Closed += HubConnectionClosed;
 
-            //_can29Connection.On<string, int>("BroadcastMessage", OnCan29MessageReceived);
-            _can29Connection.On<int>("TimerAction", Test);
+            _can29Connection.On<string, int>("BroadcastMessage", OnCan29MessageReceived);
+            //_can29Connection.On<int>("MTBApiRepositoryTimerAction", Test);
 
             try
             {
@@ -763,6 +846,9 @@ namespace WPFClient
             GetReflectorRaised();
             GetBrightnessRaised();
             GetRLTLRaised();
+
+            OnConnectMTBRaised();
+            #endregion
 
         }
 
@@ -952,6 +1038,8 @@ namespace WPFClient
 
             Console.WriteLine();
         }
+
+        #endregion
 
         private IEnumerable<T> JasonToEnumableConverter<T>(string json)
         {

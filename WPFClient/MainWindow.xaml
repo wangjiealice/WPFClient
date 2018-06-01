@@ -130,6 +130,7 @@
                         <TextBlock>TL</TextBlock>
                     </RadioButton.Content>
                 </RadioButton>
+                <Button Command="{Binding ViewModel.ConnectMTBCommand}" Visibility="Collapsed">Connect</Button>
             </StackPanel>
         </GroupBox>
 

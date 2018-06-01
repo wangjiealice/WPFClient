@@ -267,7 +267,7 @@
     <Compile Include="BookChapter.cs" />
     <Compile Include="BookChapterClient.cs" />
     <Compile Include="Can29Model.cs" />
-    <Compile Include="Configure\XmlHelp.cs" />
+    <Compile Include="Helper\XmlHelp.cs" />
     <Compile Include="Converter\RLTLConverter.cs" />
     <Compile Include="HttpClientHelper.cs" />
     <Compile Include="MessagingService.cs" />
