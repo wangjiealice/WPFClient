@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNetCore.Sockets.Client.Http</name>
+    </assembly>
+    <members>
+        <member name="P:Microsoft.AspNetCore.Sockets.Client.Http.HttpOptions.WebSocketOptions">
+            <summary>
+            Gets or sets a delegate that will be invoked with the <see cref="T:System.Net.WebSockets.ClientWebSocketOptions"/> object used
+            by the <see cref="T:Microsoft.AspNetCore.Sockets.Client.WebSocketsTransport"/> to configure the WebSocket.
+            </summary>
+            <remarks>
+            This delegate is invoked after headers from <see cref="P:Microsoft.AspNetCore.Sockets.Client.Http.HttpOptions.Headers"/> and the access token from <see cref="P:Microsoft.AspNetCore.Sockets.Client.Http.HttpOptions.AccessTokenFactory"/>
+            has been applied.
+            </remarks>
+        </member>
+        <member name="M:Microsoft.AspNetCore.Sockets.Internal.ForceAsyncTaskExtensions.ForceAsync(System.Threading.Tasks.Task)">
+            <summary>
+            Returns an awaitable/awaiter that will ensure the continuation is executed
+            asynchronously on the thread pool, even if the task is already completed
+            by the time the await occurs.  Effectively, it is equivalent to awaiting
+            with ConfigureAwait(false) and then queuing the continuation with Task.Run,
+            but it avoids the extra hop if the continuation already executed asynchronously.
+            </summary>
+        </member>
+        <member name="M:System.IO.Pipelines.StreamExtensions.CopyToAsync(System.IO.Stream,System.IO.Pipelines.PipeWriter,System.Threading.CancellationToken)">
+            <summary>
+            Copies the content of a <see cref="T:System.IO.Stream"/> into a <see cref="T:System.IO.Pipelines.PipeWriter"/>.
+            </summary>
+            <param name="stream"></param>
+            <param name="writer"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.IO.Pipelines.StreamExtensions.CopyToAsync(System.Buffers.ReadOnlyBuffer{System.Byte},System.IO.Stream)">
+            <summary>
+            Copies a <see cref="T:System.Buffers.ReadOnlyBuffer`1"/> to a <see cref="T:System.IO.Stream"/> asynchronously
+            </summary>
+            <param name="buffer">The <see cref="T:System.Buffers.ReadOnlyBuffer`1"/> to copy</param>
+            <param name="stream">The target <see cref="T:System.IO.Stream"/></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

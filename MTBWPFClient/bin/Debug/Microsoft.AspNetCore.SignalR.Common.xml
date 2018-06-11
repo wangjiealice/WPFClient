@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Microsoft.AspNetCore.SignalR.Common</name>
+    </assembly>
+    <members>
+        <member name="M:Microsoft.AspNetCore.SignalR.Internal.Encoders.LengthPrefixedTextMessageParser.TryParseMessage(System.ReadOnlySpan{System.Byte}@,System.ReadOnlySpan{System.Byte}@)">
+            <summary>
+            Attempts to parse a message from the buffer. Returns 'false' if there is not enough data to complete a message. Throws an
+            exception if there is a format error in the provided data.
+            </summary>
+        </member>
+    </members>
+</doc>
