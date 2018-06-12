@@ -67,7 +67,7 @@
         <ComboBox Grid.Row="3" ItemsSource="{Binding ViewModel.Components}"
                   SelectedIndex="{Binding ViewModel.SelectedComponentIndex}"/>
         <Button Grid.Row="5" Command="{Binding ViewModel.ConnectMTBCommand}"
-                Width="150" HorizontalAlignment="Left">Connect to MTB</Button>
+                Width="150" Height="30" HorizontalAlignment="Left">Connect to MTB</Button>
         <TextBlock Grid.Row="6" HorizontalAlignment="Left">Message:</TextBlock>
         <TextBox Text="{Binding ViewModel.DisplayMessages, Mode=TwoWay}"
                  Grid.Row="7" Height="200" VerticalContentAlignment="Top" TextWrapping="Wrap"/>

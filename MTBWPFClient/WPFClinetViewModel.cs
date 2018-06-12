@@ -106,7 +106,7 @@ namespace WPFClient
                 OnPropertyChanged("SelectedComponentIndex");
             }
         }
-        private ObservableCollection<string> Components
+        public ObservableCollection<string> Components
         {
             get
             {
@@ -120,7 +120,7 @@ namespace WPFClient
         }
 
         //ReflectorTextColor
-        private string _reflectorTextColor ="#FFFFFF";
+        private string _reflectorTextColor = "#FFFFFF";
         public string ReflectorTextColor
         {
             get
@@ -295,7 +295,7 @@ namespace WPFClient
                 return new DelegateCommand(OnRightButtonUpRaised);
             }
         }
-        
+
         public ICommand LoadedCommand
         {
             get
@@ -439,7 +439,7 @@ namespace WPFClient
         #region Function
         private void SelectedDeviceChangedRaised()
         {
-            Console.WriteLine("selection change called");
+            RefreshComponents(SelectedDeviceIndex);
         }
 
         private void OnRightButtonUpRaised()
@@ -455,7 +455,7 @@ namespace WPFClient
             DisplayBooksInConsole();
         }
 
-        private  void OnConnectMTBRaised()
+        private void OnConnectMTBRaised()
         {
             #region MTB
             CloseConnection(_mtbConnection);
@@ -473,7 +473,7 @@ namespace WPFClient
             {
                 if (_mtbConnection != null)
                 {
-                      _mtbConnection.StartAsync();
+                    _mtbConnection.StartAsync();
                 }
             }
             catch (HttpRequestException ex)
@@ -490,20 +490,25 @@ namespace WPFClient
 
         private async void Initial()
         {
+            //login
             string clientID = await GetDataFromServer(Addresses.MTBConnectionAddress, "LoginID/en");
-            if (!String.Equals(clientID,"Fail"))
+            if (!String.Equals(clientID, "Fail"))
             {
-                DisplayMessages += "Registrate Client in Server, and Client ID is:" + clientID;
+                DisplayMessages += "Registrate Client in Server succeed, and Client ID is:" + clientID;
                 DisplayMessages += "\n";
             }
-            string rootChildUrl = String.Format("Root/{0}",clientID);
+            var id = JasonToTConverter<string>(clientID);
+
+            //GetRoot
+            string rootChildUrl = String.Format("Root/{0}", id);
             object result = await GetDataFromServer(Addresses.MTBConnectionAddress, rootChildUrl);
             if (!String.Equals(result, "Fail"))
             {
-                DisplayMessages += "Get Root";
+                DisplayMessages += "Get Root Succeed.";
                 DisplayMessages += "\n";
             }
 
+            //GetDeviceName
             string receivedevicesstring = await GetDataFromServer(Addresses.MTBConnectionAddress, "Root/DeviceName");
             if (!String.Equals(receivedevicesstring, "Fail"))
             {
@@ -512,9 +517,32 @@ namespace WPFClient
                 {
                     Devices.Add(item);
                 }
-                if(Devices.Count > 0)
+
+                if (Devices.Count > 0)
                 {
                     SelectedDeviceIndex = 0;
+                }
+
+                RefreshComponents(SelectedDeviceIndex);
+
+            }
+        }
+
+        private async void RefreshComponents(int index)
+        {
+            Components.Clear();
+            string deviceChildUrl = String.Format("Root/{0}/ComponentName", index);
+            string deviceresult = await GetDataFromServer(Addresses.MTBConnectionAddress, deviceChildUrl);
+            if (!String.Equals(deviceresult, "Fail"))
+            {
+                var receiveDevices = JasonToTypeConverter<List<string>>(deviceresult);
+                foreach (var device in receiveDevices)
+                {
+                    Components.Add(device);
+                }
+                if(Components.Count > 0)
+                {
+                    SelectedComponentIndex = 0;
                 }
             }
         }
@@ -524,6 +552,27 @@ namespace WPFClient
             object mtbversion = await GetDataFromServer(Addresses.MTBConnectionAddress, "MTBVersion");
             Console.WriteLine("mtbversion is {0}", mtbversion);
         }
+
+        private async Task<List<string>> GetCompnentsByDeviceNumber(int number)
+        {
+            string deviceChildUrl = String.Format("Root/{0}/ComponentName", number);
+            try
+            {
+                string result = await GetDataFromServer(Addresses.MTBConnectionAddress, deviceChildUrl);
+                if (result != "Fail")
+                {
+                    return JasonToTypeConverter<List<string>>(result);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                return null;
+            }
+        }
+
 
         private async Task<string> GetDataFromServer(string baseUri, string childUri)
         {
@@ -923,7 +972,7 @@ namespace WPFClient
         {
             Console.WriteLine("success");
         }
-        private  void OnLoadRaised()
+        private void OnLoadRaised()
         {
 
             //GetCurrentIP();
@@ -971,13 +1020,13 @@ namespace WPFClient
         private void Test(int value)
         {
 
-            Console.WriteLine("Client get value:{0}",value);
+            Console.WriteLine("Client get value:{0}", value);
         }
         private string GetCurrentIP()
         {
             string name = Dns.GetHostName();
             IPAddress[] ipadrlist = Dns.GetHostAddresses(name);
-            string ip = ipadrlist.Where(item => item.AddressFamily 
+            string ip = ipadrlist.Where(item => item.AddressFamily
             == System.Net.Sockets.AddressFamily.InterNetwork).FirstOrDefault().ToString();
 
             return ip;
@@ -993,7 +1042,8 @@ namespace WPFClient
 
         private void OnMessageReceived(string changedParam, object value)
         {
-            Console.WriteLine("Following parameter changed:" + changedParam + "And value is: " + value);
+            DisplayMessages += String.Format("Following parameter changed: {0},and value is:{1}",changedParam,value);
+            DisplayMessages += "\n";
         }
 
         private void OnCan29MessageReceived(string changedParam, int value)
