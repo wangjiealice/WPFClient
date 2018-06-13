@@ -67,8 +67,10 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Background="{Binding ViewModel.Color2}">
             <TextBlock Grid.Row="4" HorizontalAlignment="Right">Light Brightness:</TextBlock>
-            <TextBlock Text="{Binding ViewModel.PosServo.Position,Mode=TwoWay}" 
+            <TextBlock Text="{Binding ViewModel.Brightness,Mode=TwoWay}" 
                        Margin="10,0,0,0"/>
+            <!--<TextBlock Text="{Binding ViewModel.PosServo.Position,Mode=TwoWay}" 
+                       Margin="10,0,0,0"/>-->
         </StackPanel>
 
         <Rectangle Width="1000" Fill="Gray" Grid.ColumnSpan="5"/>
@@ -90,9 +92,10 @@
             </GroupBox.Header>
             <StackPanel Orientation="Horizontal" Margin="20">
                 <TextBlock>Brightness(0~1000):</TextBlock>
-                <TextBlock Text="{Binding ViewModel.PosServo.Position}"/>
-                <Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.PosServo.Position}" Width="200" VerticalAlignment="Center" Margin="10,0">
-                    <i:Interaction.Triggers>
+                <TextBlock Text="{Binding ViewModel.Brightness}"/>
+                <Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.Brightness,Mode=TwoWay}" Width="200" VerticalAlignment="Center" Margin="10,0">
+                    <!--<Slider Maximum="1000" Minimum="0" Value="{Binding ViewModel.PosServo.Position}" Width="200" VerticalAlignment="Center" Margin="10,0">-->
+                        <i:Interaction.Triggers>
                         <i:EventTrigger EventName="PreviewMouseUp">
                             <i:InvokeCommandAction Command="{Binding ViewModel.UpdatePosServoCommand}"/>
                         </i:EventTrigger>

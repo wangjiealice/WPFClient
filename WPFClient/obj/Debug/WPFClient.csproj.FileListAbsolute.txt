@@ -219,6 +219,7 @@ C:\1code\1Main\BooksServiceSample180325\WPFClient\obj\Debug\WPFClient.csproj.Cor
 C:\1code\1Main\BooksServiceSample180325\WPFClient\obj\Debug\WPFClient.csproj.CopyComplete
 C:\1code\1Main\BooksServiceSample180325\WPFClient\obj\Debug\WPFClient.csprojResolveAssemblyReference.cache
 C:\1code\1Main\BooksServiceSample180325\WPFClient\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.exe
 C:\GitExt\WPFClient\WPFClient\bin\Debug\WPFClient.exe.config
 C:\GitExt\WPFClient\WPFClient\bin\Debug\WPFClient.exe
 C:\GitExt\WPFClient\WPFClient\bin\Debug\WPFClient.pdb
@@ -313,6 +314,5 @@ C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.Properties.Resources.resources
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csproj.GenerateResource.cache
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csproj.CoreCompileInputs.cache
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csproj.CopyComplete
-C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.exe
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.pdb
 C:\GitExt\WPFClient\WPFClient\obj\Debug\WPFClient.csprojResolveAssemblyReference.cache

@@ -622,8 +622,9 @@ namespace WPFClient
             Color1 = "#FFFFFF";
             Color2 = "#FF0000";
             Color3 = "#FFFFFF";
+            PosServo.Position = Brightness;
             UpdateServo(PosServo, "Servo");
-            Brightness = PosServo.Position;
+            
         }
 
         private Servo _posChanger;
@@ -844,6 +845,7 @@ namespace WPFClient
 
             GetObjectRaised();
             GetReflectorRaised();
+            //notice that LongTan do not provide can29 getBrightness interface, can not get brightness at first
             GetBrightnessRaised();
             GetRLTLRaised();
 
@@ -896,10 +898,10 @@ namespace WPFClient
                         ReflectorPosition = (short)value;
                         break;
                     case "Brightness":
-                        //ReflectorTextColor = "#FFFFFF";
-                        //Color1 = "#FFFFFF";
-                        //Color2 = "#FF0000";
-                        //Color3 = "#FFFFFF";
+                        ReflectorTextColor = "#FFFFFF";
+                        Color1 = "#FFFFFF";
+                        Color2 = "#FF0000";
+                        Color3 = "#FFFFFF";
                         Brightness = (short)value;
                         break;
                     case "RLTL":
