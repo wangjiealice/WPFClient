@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFClient", "WPFClient\WPFC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MTBWPFClient", "MTBWPFClient\MTBWPFClient.csproj", "{35D96BAA-B905-438E-A5C5-1792918E8B14}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManager", "DeviceManager\DeviceManager.csproj", "{61700CBC-F1D9-4841-9F66-6B4E618D5108}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{35D96BAA-B905-438E-A5C5-1792918E8B14}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35D96BAA-B905-438E-A5C5-1792918E8B14}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35D96BAA-B905-438E-A5C5-1792918E8B14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61700CBC-F1D9-4841-9F66-6B4E618D5108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61700CBC-F1D9-4841-9F66-6B4E618D5108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61700CBC-F1D9-4841-9F66-6B4E618D5108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61700CBC-F1D9-4841-9F66-6B4E618D5108}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
